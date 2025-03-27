@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .email-container {
+            max-width: 700px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 2px solid #e4e4e4;
+        }
+        .header {
+            background: linear-gradient(90deg, #4e54c8, #8f94fb);
+            padding: 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        .content {
+            padding: 25px 30px;
+            color: #333333;
+        }
+        .content h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #4e54c8;
+        }
+        .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .content img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .details-table th, .details-table td {
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 1px solid #dddddd;
+            font-size: 16px;
+        }
+        .details-table th {
+            background-color: #4e54c8;
+            color: #ffffff;
+        }
+        .details-table td {
+            background-color: #f9f9f9;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, #4e54c8, #8f94fb);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 10px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .cta-button:hover {
+            background: linear-gradient(90deg, #8f94fb, #4e54c8);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .footer {
+            background-color: #f1f1f1;
+            padding: 15px;
+            text-align: center;
+            color: #666666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>✨ New Course Update from Learnsphere! ✨</h1>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content">
+            <h2>📚 {{ data.course_id.course_name }}</h2>
+            <p>We’re excited to announce a new course that has just been added to Learnsphere’s curriculum! Here are the details:</p>
+
+            <!-- Course Image -->
+            <img src="{{ data.course_id.coure_pic }}" alt="Course Image" />
+
+            <!-- Course Details -->
+            <table class="details-table">
+                <tr>
+                    <th>Course Name</th>
+                    <td>{{ data.course_id.course_name }}</td>
+                </tr>
+                <tr>
+                    <th>Duration</th>
+                    <td>{{ data.course_id.course_duration }}</td>
+                </tr>
+                <tr>
+                    <th>Fees</th>
+                    <td>{{ data.course_id.fees }}</td>
+                </tr>
+                <tr>
+                    <th>Faculty</th>
+                    <td>{{ data.course_id.course_tutor_name }}</td>
+                </tr>
+            </table>
+
+            <!-- Call-to-Action Button -->
+            <!-- <a href="{{ enroll_link }}" class="cta-button">Enroll Now</a> -->
+
+            <p>Don’t miss the opportunity to advance your knowledge and skills. Join us today!</p>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer">
+            Learnsphere © 2025. All rights reserved. | <a href="#" style="color: #4e54c8; text-decoration: none;">Visit Us</a>
+        </div>
+    </div>
+</body>
+</html>

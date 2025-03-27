@@ -1,0 +1,193 @@
+﻿       
+{% extends "myapp/index.html" %}
+{% block content %}
+<section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Edit Course <small class="text-muted">Welcome to Learnsphere</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i> Learnsphere</a></li>
+                                                            <li class="breadcrumb-item">Course</li>
+                                                                                        <li class="breadcrumb-item active">Edit Course</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        {% if s_msg %}
+        <div class="alert alert-success" role="alert">
+            {{s_msg}}
+          </div>
+        {% endif %}
+
+        <!-- {% if e_msg %}
+        <div class="alert alert-danger" role="alert">
+            {{e_msg}}
+          </div>
+        {% endif %} -->
+
+        <div class="card">
+            <div class="header">
+                <h2><strong>Edit</strong> Course<small>Description text here...</small> </h2>
+                <ul class="header-dropdown">                            
+                    <li class="remove">
+                        <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <form  method="post" action="{% url 'update_course' %}" enctype="multipart/form-data" >
+                {% csrf_token %}
+                <div class="body">
+                    
+
+                    <div class="row clearfix">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <!-- why it is written -->
+                                <input type="hidden" name="courseid" value="{{cid.id}}" />
+                                <input type="text" class="form-control" placeholder="choose category" name="category" list="course_category_list">
+                                <datalist id="course_category_list">
+                                    {% for c in call %}
+                                    <option value="{{c.category_name}}"></option>
+                                    {% endfor %}
+                                </datalist>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Caregory Name" name="course_name" value="{{cid.course_name}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Caregory Duration" name="course_duration" value="{{cid.course_duration}}">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Caregory fees" name="fees" value="{{cid.fees}}">
+                            </div>
+                        
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Caregory tutor name" name="course_tutor_name" value="{{cid.course_tutor_name}}">
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="row clearfix">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                &nbsp;&nbsp;&nbsp; Upload LectureFlow :
+                                <input type="file" class="form-control" name="course_lecture_flow">
+                                {% if cid.course_lecture_flow %}
+                                    <br>
+                                    <a href="{{ cid.course_lecture_flow.url }}" target="_blank">
+                                        <button type="button" class="btn btn-primary">View Lecture Flow</button>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                &nbsp;&nbsp;&nbsp; Upload HandBook :
+                                <input type="file" class="form-control" name="course_handbook">
+                                {% if cid.course_handbook %}
+                                    <br>
+                                    <a href="{{ cid.course_handbook.url }}" target="_blank">
+                                        <button type="button" class="btn btn-primary">View HandBook</button>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                &nbsp;&nbsp;&nbsp; Upload Interview Questions :
+                                <input type="file" class="form-control" name="course_interview_questions">
+                                {% if cid.course_interview_questions %}
+                                    <br>
+                                    <a href="{{ cid.course_interview_questions.url }}" target="_blank">
+                                        <button type="button" class="btn btn-primary">View Interview Questions</button>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                &nbsp;&nbsp;&nbsp; Upload Assignments :
+                                <input type="file" class="form-control" name="coure_assignments">
+                                {% if cid.coure_assignments %}
+                                    <br>
+                                    <a href="{{ cid.coure_assignments.url }}" target="_blank">
+                                        <button type="button" class="btn btn-primary">View Assignments</button>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    &nbsp;&nbsp;&nbsp; Upload Image of course :
+                                    <input type="file" class="form-control" name="coure_pic">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    &nbsp;&nbsp;&nbsp; Upload url of Video :
+                                    <input type="url" class="form-control" placeholder="YouTube Video URL" name="video_url" value="{{ cid.video_url }}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Quiz URL</label>
+                                    <input type="url" class="form-control" name="quiz_url" value="{{ cid.quiz_url }}" placeholder="Enter quiz URL">
+                                </div>
+                            </div>
+                        </div>
+
+                        <br><br>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Type course description here...." name="course_description">{{ cid.course_description }}</textarea>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <input type="submit" class="btn btn-primary btn-round" value="Update">
+                            <!-- <button type="submit" class="btn btn-default btn-round btn-simple">Cancel</button> -->
+                        </div>
+                    </div>
+                </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+            </div>
+
+
+</section>
+{% endblock %}
+                

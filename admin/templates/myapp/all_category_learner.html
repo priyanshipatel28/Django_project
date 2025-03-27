@@ -1,0 +1,61 @@
+﻿{% extends 'myapp/learner_index.html' %}
+{% block content %}
+<section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Category <small class="text-muted">Welcome to Learnsphere</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i> Learnsphere</a></li>
+                                                            <li class="breadcrumb-item">Payment</li>
+                                                                                        <li class="breadcrumb-item active">Category</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover text-center js-basic-example dataTable">
+                            <thead style="background: linear-gradient(135deg, #0077b6, #00a8e8); color: white;">
+                                <tr>
+                                    <th>SR No</th>
+                                    <th>Category Image</th>
+                                    <th>Category Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in call %}
+                                <tr class="align-middle" style="background-color: {% cycle '#f0faff' '#e3f2fd' %}; transition: 0.3s;">
+                                    <td class="fw-bold text-primary">{{ forloop.counter }}</td>
+                                    <td>
+                                        <img src="{{ i.category_pic.url }}" class="rounded-circle shadow" height="60px" width="60px"
+                                             style="transition: 0.3s; border: 3px solid #0077b6;"
+                                             onmouseover="this.style.transform='scale(1.1)';" 
+                                             onmouseout="this.style.transform='scale(1)';"
+                                             alt="Category Image" title="{{ i.category_name }}">
+                                    </td>
+                                    <td class="fw-bold text-primary">{{ i.category_name }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+            </div>
+</section>
+{% endblock %}

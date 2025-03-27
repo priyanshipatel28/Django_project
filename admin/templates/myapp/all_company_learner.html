@@ -1,0 +1,127 @@
+﻿   
+{% extends 'myapp/learner_index.html' %}
+{% block content %}
+<section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Company <small class="text-muted">Welcome to Learnsphere</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i> Learnsphere</a></li>
+                                                            <li class="breadcrumb-item">Company</li>
+                                                                                        <li class="breadcrumb-item active">Company</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="header">
+                    <h2><strong>Company List</strong> </h2>
+                    <!-- <ul class="header-dropdown">
+                        <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
+                            <ul class="dropdown-menu dropdown-menu-right slideUp float-right">
+                                <li><a href="javascript:void(0);">Action</a></li>
+                                <li><a href="javascript:void(0);">Another action</a></li>
+                                <li><a href="javascript:void(0);">Something else</a></li>
+                            </ul>
+                        </li>
+                        <li class="remove">
+                            <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                        </li>
+                    </ul> -->
+                </div>
+                <div class="body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover text-center js-basic-example dataTable">
+                            <thead style="background: linear-gradient(135deg, #0077b6, #00a8e8); color: white;">
+                                <tr>
+                                    <th>SR No</th>
+                                    <th>Company Logo</th>
+                                    <th>Company Name</th>
+                                    <th>Website</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Location</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in call %}
+                                <tr class="align-middle" style="background-color: {% cycle '#f0faff' '#e3f2fd' %}; transition: 0.3s;">
+                                    <td class="fw-bold text-primary">{{ forloop.counter }}</td>
+                                    <td>
+                                        <img src="{{ i.company_logo.url }}" class="rounded-circle shadow" height="60px" width="60px" 
+                                             style="transition: 0.3s; border: 3px solid #0077b6;"
+                                             onmouseover="this.style.transform='scale(1.1)';" 
+                                             onmouseout="this.style.transform='scale(1)';" 
+                                             alt="Company Logo">
+                                    </td>
+                                    <td class="fw-bold text-primary">{{ i.company_name }}</td>
+                                    <td>
+                                        <a href="{{ i.company_website }}" target="_blank" class="btn btn-primary btn-sm text-white">
+                                            <i class="fas fa-globe"></i> Visit
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="mailto:{{ i.email }}" class="text-decoration-none fw-bold text-dark">
+                                            <i class="fas fa-envelope text-primary"></i> {{ i.email }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="tel:{{ i.phone_number }}" class="text-decoration-none fw-bold text-dark">
+                                            <i class="fas fa-phone text-primary"></i> {{ i.phone_number }}
+                                        </a>
+                                    </td>
+                                    <td class="text-secondary">{{ i.location }}</td>
+                                    <td>
+                                        {% if i.company_description|length > 100 %}
+                                            {{ i.company_description|slice:":100" }}...
+                                            <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#descModal{{ forloop.counter }}">
+                                                Read More
+                                            </a>
+                    
+                                            <!-- Modal for Full Description -->
+                                            <div class="modal fade" id="descModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="descModalLabel{{ forloop.counter }}" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header" style="background: #0077b6; color: white;">
+                                                            <h5 class="modal-title" id="descModalLabel{{ forloop.counter }}">{{ i.company_name }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            {{ i.company_description }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            {{ i.company_description }}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- FontAwesome Icons -->
+                    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+            </div>
+</section>
+{% endblock %}
+                

@@ -1,0 +1,90 @@
+﻿{% extends "myapp/learner_index.html" %}
+{% load custom_filters %}
+{% block content %}
+<section class="content home">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <h2>All Courses <small class="text-muted">Browse Available Courses</small></h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="Blog-page">
+            <div class="row">
+                <div class="col-md-12 d-flex flex-wrap justify-content-center">
+                    <div class="row clearfix">
+                        {% for c in all_courses %}
+                        <div class="col-lg-10 mx-auto">
+                            <div class="card single_post shadow-lg" 
+                                 style="border-radius: 12px; overflow: hidden; transition: 0.3s; border: none;">
+                                <!-- Card Header with Marine Theme -->
+                                <div class="body p-4 text-white" 
+                                     style="background: linear-gradient(135deg, #0077b6, #00a8e8);">
+                                    <h3 class="m-t-0 m-b-3">
+                                        <a href="{% url 'read_more' c.id %}" 
+                                           style="color: white; text-decoration: none;">
+                                            {{ c.course_name }}
+                                        </a>
+                                    </h3>
+                                    <ul class="meta list-inline">
+                                        <li class="list-inline-item">
+                                            <i class="zmdi zmdi-account text-white"></i> Tutor: {{ c.course_tutor_name }}
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <i class="zmdi zmdi-label text-white"></i> Duration: {{ c.course_duration }}
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <i class="zmdi zmdi-money text-white"></i> Fees: {{ c.fees }}
+                                        </li>
+                                    </ul>
+                                </div>
+    
+                                <!-- Course Content -->
+                                <div class="body p-4">
+                                    <div class="d-flex align-items-center">
+                                        <!-- Image -->
+                                        <div class="img-post m-b-15 m-r-15">
+                                            <img src="{{ c.coure_pic.url }}" alt="{{ c.course_name }}" 
+                                                 height="80px" width="80px" class="rounded shadow"
+                                                 style="border: 3px solid #0077b6; transition: 0.3s;"
+                                                 onmouseover="this.style.transform='scale(1.1)';" 
+                                                 onmouseout="this.style.transform='scale(1)';">
+                                        </div>
+                                        <p class="text-muted">{{ c.course_description }}</p>
+                                    </div>
+    
+                                    <!-- Enrollment Status & Buttons -->
+                                    <div class="mt-3">
+                                        <p><strong>Enrollment Status:</strong> 
+                                            {% if enrolled_dict|get_item:c.id %} 
+                                                {{ enrolled_dict|get_item:c.id }} 
+                                            {% else %} 
+                                                Not Enrolled 
+                                            {% endif %}
+                                        </p>
+    
+                                        {% if enrolled_dict|get_item:c.id == "APPROVED" %}
+                                            <a href="{% url 'read_more' c.id %}" 
+                                               class="btn btn-info btn-round text-white">📖 Read More</a>
+                                        {% elif enrolled_dict|get_item:c.id == "PENDING" %}
+                                            <button class="btn btn-warning btn-round" disabled>⏳ Request Pending</button>
+                                        {% else %}
+                                            <a href="{% url 'enroll_course' c.id %}" 
+                                               class="btn btn-primary btn-round">🎓 Request Enrollment</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p class="text-center text-muted">No courses available.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

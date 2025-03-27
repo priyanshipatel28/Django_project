@@ -1,0 +1,68 @@
+﻿{% extends "myapp/index.html" %}
+{% block content %}
+<section class="content home">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12">
+                <h2>Blog Grid <small class="text-muted">Welcome to Learnsphere</small></h2>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+
+
+
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i>
+                            Learnsphere</a></li>
+                    <li class="breadcrumb-item">Blog</li>
+                    <li class="breadcrumb-item active">Blog Grid</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="Blog-page">
+            <div class="row">
+                
+                <div class="col-md-12 d-flex flex-wrap">
+                    
+                    {% for c in call %}
+                    <div class="col-lg-6">
+                        <div class="card single_post">
+                            <div class="body">
+                                <h3 class="m-t-0 m-b-5"><a href="detail.html">{{c.course_name}}</a></h3>
+                                <ul class="meta">
+                                    <li><a href="#"><i class="zmdi zmdi-account col-blue"></i>Tutor:
+                                            {{c.course_tutor_name}}</a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-label col-lime"></i>Duration :
+                                            {{c.course_duration}}</a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-comment-text col-blue"></i>Fees: {{c.fees}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="body">
+                                <div class="box1 d-flex ">
+                                    <div class="img-post m-b-15 m-r-15">
+                                        <img src="{{c.coure_pic.url}}" alt="{{c.course_name}}" height="100px"
+                                            width="250px">
+                                       
+                                    </div>
+                                    <p>{{c.course_description}}</p>
+                                </div>
+                                <a href="detail.html" title="read more" class="btn btn-round btn-info">Read More</a>
+                                <a href="{% url 'edit_course' pk=c.id %}" class="btn btn-round btn-warning">Edit</a>
+                                <a href="{% url 'del_course' pk=c.id %}" class="btn btn-round btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this course?');">Delete</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock %}

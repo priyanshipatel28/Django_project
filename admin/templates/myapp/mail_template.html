@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learnsphere OTP Verification</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 2px solid #00bcd4;
+        }
+        .email-header {
+            background: linear-gradient(135deg, #01579b, #00bcd4);
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .email-header h1 {
+            font-size: 26px;
+            margin: 0;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .email-header p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .email-body {
+            padding: 20px 30px;
+            text-align: center;
+        }
+        .email-body p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        .otp {
+            display: inline-block;
+            font-size: 36px;
+            font-weight: bold;
+            color: #d32f2f;
+            background: #fce4ec;
+            padding: 10px 30px;
+            border-radius: 8px;
+            margin: 20px auto;
+            letter-spacing: 4px;
+        }
+        .email-footer {
+            background: #f0f0f0;
+            padding: 15px;
+            text-align: center;
+            border-top: 1px solid #ddd;
+        }
+        .email-footer p {
+            font-size: 14px;
+            color: #777777;
+            margin: 5px 0;
+        }
+        .btn-verify {
+            display: inline-block;
+            background: #00bcd4;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+        .btn-verify:hover {
+            background: #0288d1;
+        }
+        .cute-icon {
+            font-size: 50px;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h1 style="font-size: 28px; color: #0674c3; font-family: Arial, sans-serif; text-transform: uppercase; letter-spacing: 1px;">
+            FORGET Password
+        </h1>
+    </div>
+    <div class="email-container">
+        <!-- Header Section -->
+        <div class="email-header">
+            <div class="cute-icon">🔒</div>
+            <h1>Verify Your Identity</h1>
+            <p>Welcome to Learnsphere</p>
+        </div>
+
+        <!-- Body Section -->
+        <div class="email-body">
+            <p>Hello there! 👋,{{data.aid.username}}</p>
+            <p>Your One-Time Password (OTP) for verification is:</p>
+            <div class="otp">{{ data.otp }}</div>
+            <p>This OTP is valid for the next <strong>10 minutes</strong>. Please enter it in the app to complete your verification.</p>
+            <!-- <a href="#" class="btn-verify">Verify Now</a> -->
+        </div>
+
+        <!-- Footer Section -->
+        <div class="email-footer">
+            <!-- <p>Need help? Contact <a href="mailto:support@Learnsphere.com">support@Learnsphere.com</a>.</p> -->
+            <p>Thank you for using Learnsphere! 💙</p>
+        </div>
+    </div>
+</body>
+</html>
